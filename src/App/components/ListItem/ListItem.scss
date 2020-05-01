@@ -1,14 +1,25 @@
-.ListItem {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 32px 0 6px 12px;
-  color: rgba(0,0,0,.5);
-
-  .active {
-    border-left: 3px solid green;
+.ListItemContainer {
+  &:not.active {
+    padding-left:3px;
   }
 
-  .ItemText {
-    margin-left: 12px;
+  &.active {
+    border-left: 4px solid #0ecdef;
+    // margin-left: 16px;
+  }
+
+  .ListItem {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 32px 0 6px 0;
+    padding-left: 32px;
+    cursor: pointer;
+    color: rgba(0,0,0,.5);
+    user-select: none;
+
+    .ItemText {
+      // padding: 32px 0 6px 12px;
+      margin-left: 12px;
+    }
   }
 }

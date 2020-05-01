@@ -2,13 +2,15 @@ import React from "react";
 import "./ListItem.scss"
 import Icons from "../../assets/Assets"
 
-const ListItem = function ({ name, active, icon }) {
+const ListItem = function ({ name, active, icon, click }) {
 
   return (
-    <div className={`ListItem ${active? "active" : null}`}>
-      <img src={Icons[icon]} alt={icon}/>
-      <div className="ItemText">
-        {name}
+    <div onClick={click} className={`ListItemContainer${active? " active" : ''}`}>
+      <div className="ListItem">
+        <img src={Icons[icon]} alt={icon}/>
+        <div className="ItemText">
+          {name}
+        </div>
       </div>
     </div>
   );
