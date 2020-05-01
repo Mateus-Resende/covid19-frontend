@@ -46,7 +46,9 @@ class Sidebar extends React.Component {
     return (
       <div className="SidebarContainer">
         <div className="Sidebar">
-          <h2 key="1">Menu</h2>
+          <div>
+            <h2 key="1">Menu</h2>
+          </div>
           {items}
         </div>
       </div>
