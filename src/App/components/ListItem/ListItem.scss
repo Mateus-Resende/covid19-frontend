@@ -1,0 +1,14 @@
+.ListItem {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 0 6px 12px;
+  color: rgba(0,0,0,.5);
+
+  .active {
+    border-left: 3px solid green;
+  }
+
+  .ItemText {
+    margin-left: 12px;
+  }
+}

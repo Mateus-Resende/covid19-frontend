@@ -1,0 +1,17 @@
+.SidebarContainer {
+  width: 20%;
+  min-width: 300px;
+  background-color: #fff;
+
+  .Sidebar {
+    margin: 64px 24px;
+    line-height: 24px;
+
+    h2 {
+      text-align: center;
+      font-weight: bold;
+      line-height: 32px;
+      margin: 32px 0 64px 0;
+    }
+  }
+}
