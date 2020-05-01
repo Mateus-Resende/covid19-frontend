@@ -1,11 +1,9 @@
 .ListItemContainer {
-  &:not.active {
-    padding-left:3px;
-  }
+  color: rgba(0,0,0,.5);
 
   &.active {
     border-left: 4px solid #0ecdef;
-    // margin-left: 16px;
+    color: black;
   }
 
   .ListItem {
@@ -13,9 +11,8 @@
     flex-wrap: wrap;
     margin: 32px 0 6px 0;
     padding-left: 32px;
-    cursor: pointer;
-    color: rgba(0,0,0,.5);
     user-select: none;
+    cursor: pointer;
 
     .ItemText {
       // padding: 32px 0 6px 12px;
