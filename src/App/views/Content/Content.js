@@ -1,15 +1,13 @@
 import React from 'react';
 import './Content.scss'
 
-import StatsHeader from '../StatsHeader/StatsHeader'
-import Map from '../Map/Map';
-import Footer from '../Footer/Footer';
+import News from '../../components/News/News';
+import Footer from '../../components/Footer/Footer';
 
 const Content = function () {
   return (
     <div className="Content">
-      <StatsHeader />
-      <Map />
+      <News />
       <Footer />
     </div>
   );

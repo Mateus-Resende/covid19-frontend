@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sidebar.scss'
 
-import ListItem from '../ListItem/ListItem'
+import ListItem from '../../components/ListItem/ListItem'
 
 class Sidebar extends React.Component {
   state = {
@@ -28,7 +28,7 @@ class Sidebar extends React.Component {
     icon: 'News'
   }]
 
-  handleItemClick = (index, event) => {
+  handleItemClick = (index) => {
     this.setState({ activeItem: index })
   }
 
