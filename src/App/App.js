@@ -1,7 +1,18 @@
 import React from 'react';
 import Sidebar from './views/Sidebar/Sidebar';
-import Content from './views/Content/Content';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
+import News from './components/News/News'
+import Game from './components/Game/Game'
+import NearbyCases from './components/NearbyCases/NearbyCases';
+import OnlineAppointment from './components/OnlineAppointment/OnlineAppointment'
+import WhereToTest from './components/WhereToTest/WhereToTest'
+import Shop from './components/Shop/Shop'
+import Footer from './components/Footer/Footer'
 import './App.scss';
 
 class App extends React.Component {
@@ -10,8 +21,32 @@ class App extends React.Component {
   render () {
     return (
       <div className="App">
-        <Sidebar />
-        <Content />
+        <Router>
+          <Sidebar />
+          <div className="Content">
+            <Switch>
+              <Route exact path="/">
+                <Shop />
+              </Route>
+              <Route path="/nearby-cases">
+                <NearbyCases />
+              </Route>
+              <Route path="/online-appointment">
+                <OnlineAppointment />
+              </Route>
+              <Route path="/where-to-test">
+                <WhereToTest />
+              </Route>
+              <Route path="/games">
+                <Game />
+              </Route>
+              <Route path="/news">
+                <News />
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
       </div>
     );
   }

@@ -10,22 +10,28 @@ class Sidebar extends React.Component {
 
   list = [{
     name: 'Suprimentos Médicos',
-    icon: 'ShoppingCart'
+    icon: 'ShoppingCart',
+    path: ''
   }, {
     name: 'Casos próximos',
-    icon: 'NearbyCases'
+    icon: 'NearbyCases',
+    path: 'nearby-cases'
   }, {
     name: 'Consulta online',
-    icon: 'OnlineAppointment'
+    icon: 'OnlineAppointment',
+    path: 'online-appointment'
   }, {
     name: 'Onde fazer o teste',
-    icon: 'WhereToTest'
+    icon: 'WhereToTest',
+    path: 'where-to-test'
   }, {
     name: 'Jogos',
-    icon: 'Games'
+    icon: 'Games',
+    path: 'games'
   }, {
     name: 'Noticias',
-    icon: 'News'
+    icon: 'News',
+    path: 'news'
   }]
 
   handleItemClick = (index) => {
@@ -39,6 +45,7 @@ class Sidebar extends React.Component {
         key={index}
         active={index === this.state.activeItem}
         icon={item.icon}
+        path={item.path}
         click={this.handleItemClick.bind(this, index)}
       />
     })

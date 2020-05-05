@@ -20,7 +20,7 @@ const News = function () {
             className="twitter-timeline"
             data-theme="light"
             data-lang="pt"
-            data-chrome=" nofooter noborders"
+            data-chrome="nofooter noborders"
             href="https://twitter.com/minsaude"
           >
             Tweets Do Ministério da Saúde
@@ -31,4 +31,4 @@ const News = function () {
   );
 }
 
-export default News
+export default News;
