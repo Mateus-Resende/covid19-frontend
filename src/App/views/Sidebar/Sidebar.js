@@ -11,7 +11,7 @@ class Sidebar extends React.Component {
   list = [{
     name: 'Suprimentos Médicos',
     icon: 'ShoppingCart',
-    path: ''
+    path: '/'
   }, {
     name: 'Casos próximos',
     icon: 'NearbyCases',
@@ -43,7 +43,6 @@ class Sidebar extends React.Component {
       return <ListItem
         name={item.name}
         key={index}
-        active={index === this.state.activeItem}
         icon={item.icon}
         path={item.path}
         click={this.handleItemClick.bind(this, index)}

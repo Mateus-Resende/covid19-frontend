@@ -5,18 +5,15 @@ import "./ListItem.scss";
 import Icons from "../../assets/Assets";
 
 const ListItem = function ({ name, icon, click, path }) {
-
   return (
-    <NavLink to={path} activeClassName="active">
-      <div onClick={click} className="ListItemContainer">
-        <div className="ListItem">
-          <img src={Icons[icon]} alt={icon}/>
-          <div className="ItemText">
-            {name}
-          </div>
+    <div onClick={click} className="ListItemContainer">
+      <NavLink to={path} className="ListItem" activeClassName="active" exact>
+        <img src={Icons[icon]} alt={icon}/>
+        <div className="ItemText">
+          {name}
         </div>
-      </div>
-    </NavLink>
+      </NavLink>
+    </div>
   );
 }
 

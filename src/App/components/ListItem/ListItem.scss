@@ -1,35 +1,31 @@
 .ListItemContainer {
   color: rgba(0,0,0,.5);
 
-  :hover {
-    color: black;
-  }
-
   .ListItem {
     display: flex;
     flex-wrap: wrap;
     margin: 32px 0 6px 0;
     padding-left: 32px;
     user-select: none;
-    cursor: pointer;
+    width: 100%;
+
+    :hover {
+      color: black;
+    }
+
+    &.active {
+      color: #000000;
+      border-left: 4px solid #0ecdef;
+    }
 
     .ItemText {
+      cursor: pointer;
       margin-left: 12px;
 
       li {
         list-style: none;
         text-decoration: none;
       }
-    }
-  }
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  .active {
-    .ListItemContainer {
-      color: black !important;
     }
   }
 }
