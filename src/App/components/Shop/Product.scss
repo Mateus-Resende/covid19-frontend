@@ -1,0 +1,59 @@
+.Product {
+  width: 200px;
+  height: 310px;
+  margin: 20px 20px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 2px 2px #dddddd;
+
+  .Image {
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .Info {
+    width: 200px;
+    padding: 6px 0;
+
+    .Name {
+      margin: 6px 6px;
+    }
+
+    .Price {
+      margin: auto 6px;
+      font-weight: 800;
+    }
+
+    .LinkButton {
+      background-color: #fff;
+      margin: 6px 6px;
+      width: 164px;
+      font-weight: 600;
+      transition: all .15s ease;
+      letter-spacing: .025em;
+      font-size: .875rem;
+      will-change: transform;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      border: 1px solid transparent;
+      padding: .312rem 0.625rem;
+      line-height: 1.5;
+      border-radius: .187rem;
+      border-color: #2dce89;
+      color: #2dce89;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+        transform: translateY(-1px);
+        color: #fff;
+        background-color: #2dce89;
+        border-color: #2dce89;
+      }
+    }
+  }
+}

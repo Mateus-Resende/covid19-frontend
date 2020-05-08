@@ -1,8 +1,7 @@
 .ListItemContainer {
   color: rgba(0,0,0,.5);
 
-  &.active {
-    border-left: 4px solid #0ecdef;
+  :hover {
     color: black;
   }
 
@@ -16,6 +15,21 @@
 
     .ItemText {
       margin-left: 12px;
+
+      li {
+        list-style: none;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  .active {
+    .ListItemContainer {
+      color: black !important;
     }
   }
 }
