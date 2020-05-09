@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
+import Assets from '../../assets/Assets'
 import config from '../../../config';
 
 export class SimpleMap extends Component {
@@ -24,7 +25,7 @@ export class SimpleMap extends Component {
     { id: 8, lat: -19.929874469267, lng: -43.938778685542 },
     { id: 9, lat: -19.920723492680, lng: -43.933545370917 },
     { id: 10, lat: -19.915241344354, lng: -43.927659374896 },
-    { id: 1, lat: -19.937765850463, lng: -43.923741783955 },
+    { id: 11, lat: -19.937765850463, lng: -43.923741783955 },
     { id: 12, lat: -19.924120030303, lng: -43.943264856542 },
     { id: 13, lat: -19.932153542103, lng: -43.924147719668 },
     { id: 14, lat: -19.925756286827, lng: -43.946175618783 }
@@ -69,12 +70,22 @@ export class SimpleMap extends Component {
     const confirmedCases = this.confirmedCases.map((position) => {
       return <Marker onClick={this.onMarkerClick}
         position={position}
-        key={position.key} />
+        key={position.id}
+        name="Caso Confirmado"
+        style={{ color: 'green'}} />
     })
 
     const currentLocation = this.state.ownPosition ?
-      <Marker location={this.state.ownPosition} /> :
-      null
+      <Marker onClick={this.onMarkerClick}
+        position={this.state.ownPosition}
+        name="Localização Atual"
+        key="current-location"
+        icon={{
+          url: Assets.CurrentLocationMarker,
+          anchor: new this.props.google.maps.Point(24,24),
+          scaledSize: new this.props.google.maps.Size(48,48)
+        }
+      } /> : null
 
     return (
       <Map google={this.props.google}
@@ -90,7 +101,7 @@ export class SimpleMap extends Component {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
             <div>
-              <h3>Caso confirmado</h3>
+              <h3>{this.state.selectedPlace.name}</h3>
             </div>
         </InfoWindow>
       </Map>
