@@ -9,6 +9,7 @@ export class SimpleMap extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
+    ownPosition: false
   };
 
   confirmedCases = [
@@ -45,7 +46,19 @@ export class SimpleMap extends Component {
     }
   };
 
-  render() {
+  componentDidMount = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        this.setState({ ownPosition: pos })
+      })
+    }
+  }
+
+  render () {
     const style = {
       height: '85vh',
       width: '70%',
@@ -53,11 +66,15 @@ export class SimpleMap extends Component {
       position: 'relative',
     }
 
-    const markers = this.confirmedCases.map((position) => {
+    const confirmedCases = this.confirmedCases.map((position) => {
       return <Marker onClick={this.onMarkerClick}
         position={position}
         key={position.key} />
     })
+
+    const currentLocation = this.state.ownPosition ?
+      <Marker location={this.state.ownPosition} /> :
+      null
 
     return (
       <Map google={this.props.google}
@@ -66,7 +83,9 @@ export class SimpleMap extends Component {
           initialCenter={{lat: -19.928519, lng: -43.93640}}
           zoom={14}>
 
-        {markers}
+        {currentLocation}
+        {confirmedCases}
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
