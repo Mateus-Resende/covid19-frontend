@@ -6,11 +6,11 @@ import {
   Route
 } from "react-router-dom";
 
-import News from './components/News/News'
-import Game from './components/Game/Game'
+import News from './components/News/News';
+import Game from './components/Game/Game';
 import NearbyCases from './components/NearbyCases/NearbyCases';
-import OnlineAppointment from './components/OnlineAppointment/OnlineAppointment'
-import WhereToTest from './components/WhereToTest/WhereToTest'
+import Information from './components/Information/Information';
+import WhereToTest from './components/WhereToTest/WhereToTest';
 import Shop from './components/Shop/Shop'
 import Footer from './components/Footer/Footer'
 import './App.scss';
@@ -31,8 +31,8 @@ class App extends React.Component {
               <Route path="/nearby-cases">
                 <NearbyCases />
               </Route>
-              <Route path="/online-appointment">
-                <OnlineAppointment />
+              <Route path="/faq">
+                <Information />
               </Route>
               <Route path="/where-to-test">
                 <WhereToTest />

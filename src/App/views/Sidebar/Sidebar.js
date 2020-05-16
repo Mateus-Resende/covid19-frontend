@@ -17,9 +17,9 @@ class Sidebar extends React.Component {
     icon: 'NearbyCases',
     path: 'nearby-cases'
   }, {
-    name: 'Consulta online',
+    name: 'Perguntas frequentes',
     icon: 'OnlineAppointment',
-    path: 'online-appointment'
+    path: 'faq'
   }, {
     name: 'Onde fazer o teste',
     icon: 'WhereToTest',

@@ -7,6 +7,7 @@ import News from './tv-24px.svg';
 import Group from './group-24px.svg';
 import BarChart from './bar_chart-24px.svg';
 import CurrentLocationMarker from './current-location-marker.png';
+import WhereToTestIcon from './pin.png';
 
 const Icons = {
   ShoppingCart,
@@ -17,7 +18,8 @@ const Icons = {
   News,
   Group,
   BarChart,
-  CurrentLocationMarker
+  CurrentLocationMarker,
+  WhereToTestIcon
 }
 
 export default Icons
