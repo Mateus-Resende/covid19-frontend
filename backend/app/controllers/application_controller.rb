@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::API
   def offset
-    ((page_params[:page] || 1) - 1) * limit
+    ((page_params[:page].to_i || 1) - 1) * limit
   end
 
   def limit
@@ -10,6 +10,6 @@ class ApplicationController < ActionController::API
   end
 
   def page_params
-    params.permit(:pages, :limit)
+    params.permit(:page, :limit)
   end
 end

@@ -2,6 +2,9 @@
 
 class CasesController < ApplicationController
   def index
-    render json: Case.limit(limit).offset(offset)
+    render json: {
+      data: Case.limit(limit).offset(offset),
+      total_pages: (Case.count / limit).ceil + 1
+    }
   end
 end

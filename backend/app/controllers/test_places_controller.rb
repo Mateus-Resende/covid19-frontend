@@ -2,6 +2,9 @@
 
 class TestPlacesController < ApplicationController
   def index
-    render json: TestPlace.limit(limit).offset(offset)
+    render json: {
+      data: TestPlace.limit(limit).offset(offset),
+      total_pages: (TestPlace.count / limit).ceil + 1
+    }
   end
 end

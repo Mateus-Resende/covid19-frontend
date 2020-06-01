@@ -23,7 +23,7 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Sidebar />
-          <div className="Content">
+          <div className="Content" onScroll={() => console.log('blabla')}>
             <Switch>
               <Route exact path="/">
                 <Shop />

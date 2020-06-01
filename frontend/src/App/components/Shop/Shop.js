@@ -1,116 +1,94 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Shop.scss"
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 
 import Product from "./Product"
 
-const supplies = [
-  {
-    id: 1,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
+const LIMIT = 8
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
   },
-  {
-    id: 2,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
+  paper: {
+    height: 140,
+    width: 100,
   },
-  {
-    id: 3,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
+  control: {
+    padding: theme.spacing(2),
   },
-  {
-    id: 4,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 5,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 6,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 7,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 8,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 9,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 10,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 11,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
-  },
-  {
-    id: 12,
-    name: "Máscara",
-    price: 1899,
-    img: "https://images-americanas.b2w.io/produtos/01/00/img/1676204/1/1676204151_1GG.jpg",
-    link: "https://americanas.com.br/produto/1676204134/mascara-tnt-triplo-com-50-unidades"
+  pagination: {
+    marginTop: 12
   }
-]
+}));
 
 const Shop = function () {
-  let products = null
+  const classes = useStyles()
+  const [supplies, setSupplies] = useState([])
+  const [page, setPage] = useState(1)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [error, setError] = useState(null)
+  const [totalPages, setTotalPages] = useState(0)
 
-  if (typeof supplies !== "undefined" && supplies.length > 0) {
-    products = supplies.map((product) => (
-      <Product
-        name={product.name}
-        price={product.price}
-        img={product.img}
-        link={product.link}
-        key={product.id} />
-    ))
+  const fetchData = (event, page) => {
+    setIsLoaded(false)
+    fetch(`http://localhost:3000/products?page=${page}&limit=${LIMIT}`, {
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      setSupplies(data.data)
+      setIsLoaded(true)
+      setTotalPages(data.total_pages)
+    })
+    .catch(err => {
+      setError(err)
+      setIsLoaded(true)
+    })
   }
 
+  useEffect(() => {
+    fetchData(null, 1)
+  }, [])
+
+
   return (
-    <div className="Shop">
+    <div className="Shop" onScroll={() => console.log('blabla')}>
       <div className="content-title">
         <h1>Suprimentos Médicos</h1>
       </div>
       <div className="content-body">
-        {products}
+        <Grid item xs={12}>
+          <Grid container justify="left" spacing={2}>
+            {
+              supplies ?
+              supplies.map((product) => (
+                <Grid key={product.id} item>
+                  <Product
+                    name={product.name}
+                    price={product.price}
+                    img={product.image_url}
+                    link={product.url}
+                    key={product.id} />
+                </Grid>
+              )) :
+              null
+            }
+          </Grid>
+        </Grid>
+        <Pagination
+          count={totalPages}
+          shape="rounded"
+          justify="right"
+          className={classes.pagination}
+          onChange={fetchData} />
       </div>
     </div>
   );
