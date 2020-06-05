@@ -1,49 +1,48 @@
-import React from "react"
-import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import React, { useState, useEffect } from 'react'
+import MapComponent from '../Map/MapRenderer'
 
-const MyMapComponent = compose(
-  withProps({
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ width: '85%', height: `800px` }} />,
-    mapElement: <div style={{ height: `100%`, }} />,
-  }),
-  withScriptjs,
-  withGoogleMap
-)((props) =>
-  <GoogleMap
-    defaultZoom={14}
-    defaultCenter={{lat: -19.928519, lng: -43.93640}}
-  >
-    {props.isMarkerShown && <Marker position={{lat: -19.928519, lng: -43.93640}} onClick={props.onMarkerClick} />}
-  </GoogleMap>
-)
+const Map = () => {
+  const [isMarkerShown, setIsMarkerShown] = useState(false)
+  const [occurrences, setOcurrences] = useState([])
+  const [error, setError] = useState(null)
 
-export default class Map extends React.PureComponent {
-  state = {
-    isMarkerShown: false,
+  const fetchCases = () => {
+    fetch(`http://localhost:3000/cases`, {
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => setOcurrences(data.data))
+    .catch(err => setError(err))
   }
 
-  componentDidMount() {
-    this.showMarker()
+  useEffect(() => {
+    fetchCases()
+  }, [])
+
+  const showMarker = () => {
+    setIsMarkerShown(true)
   }
 
-  showMarker = () => {
-    this.setState({ isMarkerShown: true })
+  const handleMarkerClick = () => {
+    setIsMarkerShown(false)
+    showMarker()
   }
 
-  handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false })
-    this.showMarker()
-  }
-
-  render() {
+  if (error) {
+  } else {
     return (
-      <MyMapComponent
-        isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.handleMarkerClick}
+      <MapComponent
+        isMarkerShown={isMarkerShown}
+        onMarkerClick={handleMarkerClick}
+        occurrences={occurrences}
       />
     )
   }
 }
+
+export default Map

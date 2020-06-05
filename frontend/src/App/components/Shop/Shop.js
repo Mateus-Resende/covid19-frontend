@@ -3,7 +3,6 @@ import "./Shop.scss"
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 
 import Product from "./Product"
 
@@ -27,13 +26,9 @@ const useStyles = makeStyles((theme) => ({
 const Shop = function () {
   const classes = useStyles()
   const [supplies, setSupplies] = useState([])
-  const [page, setPage] = useState(1)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [error, setError] = useState(null)
   const [totalPages, setTotalPages] = useState(0)
 
   const fetchData = (event, page) => {
-    setIsLoaded(false)
     fetch(`http://localhost:3000/products?page=${page}&limit=${LIMIT}`, {
       mode: 'cors',
       cache: 'no-cache',
@@ -45,12 +40,10 @@ const Shop = function () {
     .then(res => res.json())
     .then(data => {
       setSupplies(data.data)
-      setIsLoaded(true)
       setTotalPages(data.total_pages)
     })
     .catch(err => {
-      setError(err)
-      setIsLoaded(true)
+      console.error(err)
     })
   }
 

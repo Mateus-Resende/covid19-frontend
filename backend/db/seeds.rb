@@ -15,7 +15,7 @@
 # bottom right -20.024594, -43.822368
 if Case.count.zero?
   Case.create(
-    Array.new(10_000) do
+    Array.new(1_000) do
       {
         lat: rand(-20.024594..-19.795591).floor(6),
         lng: rand(-44.138610..-43.822368).floor(6)
