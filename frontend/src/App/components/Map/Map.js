@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
@@ -12,6 +12,24 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )((props) => {
+  const [ownPosition, setOwnPosition] = useState(null)
+
+  const printCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+        setOwnPosition(pos)
+      })
+    }
+  }
+
+  useEffect(() => {
+    printCurrentLocation()
+  }, [])
+
   return (
     <GoogleMap
       defaultZoom={14}
@@ -19,9 +37,14 @@ const MyMapComponent = compose(
     >
       {props.occurrences ?
           props.occurrences.map((occurrence) => {
-            return <Marker position={{ lat: occurrence.lat, lng: occurrence.lng }} onMarkerClick={props.onMarkerClick} />
+            return <Marker position={{ lat: occurrence.lat, lng: occurrence.lng }} />
           }) :
           null}
+      {ownPosition && ownPosition.lat && ownPosition.lng
+          ? <Marker key="ownPosition" position={{lat: ownPosition.lat, lng: ownPosition.lng }} />
+          : null}
+
+
     </GoogleMap>
   )
 })

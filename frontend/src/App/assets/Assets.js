@@ -9,6 +9,16 @@ import BarChart from './bar_chart-24px.svg';
 import CurrentLocationMarker from './current-location-marker.png';
 import WhereToTestIcon from './pin.png';
 
+import Aglomeracao from './aglomeracao.png';
+import Brinquedos from './brinquedos.png';
+import Casa from './casa.png';
+import Distanciamento from './distanciamento.png';
+import Espirro from './espirro.png';
+import LavarMaos from './lavar_maos.png';
+import Mascara from './mascara.png';
+import TocarRosto from './tocar_rosto.png';
+import Virus from './virus.png';
+
 const Icons = {
   ShoppingCart,
   OnlineAppointment,
@@ -19,7 +29,16 @@ const Icons = {
   Group,
   BarChart,
   CurrentLocationMarker,
-  WhereToTestIcon
+  WhereToTestIcon,
+  Aglomeracao,
+  Brinquedos,
+  Casa,
+  Distanciamento,
+  Espirro,
+  LavarMaos,
+  Mascara,
+  TocarRosto,
+  Virus
 }
 
 export default Icons

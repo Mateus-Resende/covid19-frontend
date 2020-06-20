@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid'
 
 import Product from "./Product"
 
-const LIMIT = 8
+const LIMIT = 10
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
