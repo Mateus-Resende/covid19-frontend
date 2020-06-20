@@ -13,6 +13,10 @@ class Sidebar extends React.Component {
     icon: 'ShoppingCart',
     path: '/'
   }, {
+    name: 'Avaliação de Risco',
+    icon: 'Risk',
+    path: '/risk-preview'
+  }, {
     name: 'Casos próximos',
     icon: 'NearbyCases',
     path: 'nearby-cases'

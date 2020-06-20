@@ -8,6 +8,7 @@ import Group from './group-24px.svg';
 import BarChart from './bar_chart-24px.svg';
 import CurrentLocationMarker from './current-location-marker.png';
 import WhereToTestIcon from './pin.png';
+import Risk from './risk.png';
 
 import Aglomeracao from './aglomeracao.png';
 import Brinquedos from './brinquedos.png';
@@ -30,6 +31,7 @@ const Icons = {
   BarChart,
   CurrentLocationMarker,
   WhereToTestIcon,
+  Risk,
   Aglomeracao,
   Brinquedos,
   Casa,

@@ -8,6 +8,7 @@ import {
 
 import News from './components/News/News';
 import Game from './components/Game/Game';
+import RiskPreview from './components/RiskPreview/RiskPreview';
 import NearbyCases from './components/NearbyCases/NearbyCases';
 import Information from './components/Information/Information';
 import WhereToTest from './components/WhereToTest/WhereToTest';
@@ -27,6 +28,9 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 <Shop />
+              </Route>
+              <Route exact path="/risk-preview">
+                <RiskPreview />
               </Route>
               <Route path="/nearby-cases">
                 <NearbyCases />
