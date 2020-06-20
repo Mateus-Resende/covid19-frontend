@@ -5,24 +5,23 @@ import Icons from "../../assets/Assets"
 import MemomyCard from "./MemoryCard"
 
 let cardsArr = [
-  { id: 1, disabled: false, mustUnflip: false, framework: "casa", img: Icons.Casa, alt: 'casa' },
-  { id: 2, disabled: false, mustUnflip: false, framework: "casa", img: Icons.Casa, alt: 'casa' },
-  { id: 3, disabled: false, mustUnflip: false, framework: "distanciamento", img: Icons.Distanciamento, alt: 'distanciamento' },
-  { id: 4, disabled: false, mustUnflip: false, framework: "distanciamento", img: Icons.Distanciamento, alt: 'distanciamento' },
-  { id: 5, disabled: false, mustUnflip: false, framework: "lavar_maos", img: Icons.LavarMaos, alt: 'lavar as mãos' },
-  { id: 6, disabled: false, mustUnflip: false, framework: "lavar_maos", img: Icons.LavarMaos, alt: 'lavar as mãos' },
-  { id: 7, disabled: false, mustUnflip: false, framework: "espirro", img: Icons.Espirro, alt: 'espirro' },
-  { id: 8, disabled: false, mustUnflip: false, framework: "espirro", img: Icons.Espirro, alt: 'espirro' },
-  { id: 9, disabled: false, mustUnflip: false, framework: "tocar_rosto", img: Icons.TocarRosto, alt: 'tocar o rosto' },
-  { id: 10, disabled: false, mustUnflip: false, framework: "tocar_rosto", img: Icons.TocarRosto, alt: 'tocar o rosto' },
-  { id: 11, disabled: false, mustUnflip: false, framework: "mascara", img: Icons.Mascara, alt: 'mascara' },
-  { id: 12, disabled: false, mustUnflip: false, framework: "mascara", img: Icons.Mascara, alt: 'mascara' },
-  { id: 13, disabled: false, mustUnflip: false, framework: "aglomeracao", img: Icons.Aglomeracao, alt: 'aglomeração' },
-  { id: 14, disabled: false, mustUnflip: false, framework: "aglomeracao", img: Icons.Aglomeracao, alt: 'aglomeração' },
-  { id: 15, disabled: false, mustUnflip: false, framework: "brinquedos", img: Icons.Brinquedos, alt: 'brinquedos' },
-  { id: 16, disabled: false, mustUnflip: false, framework: "brinquedos", img: Icons.Brinquedos, alt: 'brinquedos' }
+  { id: 1, disabled: false, flipped: false, framework: "casa", img: Icons.Casa, alt: 'casa' },
+  { id: 2, disabled: false, flipped: false, framework: "casa", img: Icons.Casa, alt: 'casa' },
+  { id: 3, disabled: false, flipped: false, framework: "distanciamento", img: Icons.Distanciamento, alt: 'distanciamento' },
+  { id: 4, disabled: false, flipped: false, framework: "distanciamento", img: Icons.Distanciamento, alt: 'distanciamento' },
+  { id: 5, disabled: false, flipped: false, framework: "lavar_maos", img: Icons.LavarMaos, alt: 'lavar as mãos' },
+  { id: 6, disabled: false, flipped: false, framework: "lavar_maos", img: Icons.LavarMaos, alt: 'lavar as mãos' },
+  { id: 7, disabled: false, flipped: false, framework: "espirro", img: Icons.Espirro, alt: 'espirro' },
+  { id: 8, disabled: false, flipped: false, framework: "espirro", img: Icons.Espirro, alt: 'espirro' },
+  { id: 9, disabled: false, flipped: false, framework: "tocar_rosto", img: Icons.TocarRosto, alt: 'tocar o rosto' },
+  { id: 10, disabled: false, flipped: false, framework: "tocar_rosto", img: Icons.TocarRosto, alt: 'tocar o rosto' },
+  { id: 11, disabled: false, flipped: false, framework: "mascara", img: Icons.Mascara, alt: 'mascara' },
+  { id: 12, disabled: false, flipped: false, framework: "mascara", img: Icons.Mascara, alt: 'mascara' },
+  { id: 13, disabled: false, flipped: false, framework: "aglomeracao", img: Icons.Aglomeracao, alt: 'aglomeração' },
+  { id: 14, disabled: false, flipped: false, framework: "aglomeracao", img: Icons.Aglomeracao, alt: 'aglomeração' },
+  { id: 15, disabled: false, flipped: false, framework: "brinquedos", img: Icons.Brinquedos, alt: 'brinquedos' },
+  { id: 16, disabled: false, flipped: false, framework: "brinquedos", img: Icons.Brinquedos, alt: 'brinquedos' }
 ]
-
 
 const Game = function () {
   const [gameStarted, setGameStarted] = useState(false)
@@ -36,10 +35,19 @@ const Game = function () {
     if (lockBoard) return
     if (id === firstCard.id) {
       setFirstCard({ id: null, framework: null })
+      unflipCards()
       return
     }
 
     if (!hasFlippedCard) {
+      let newCards = cards.map(card => {
+        if (card.id === id && !card.disabled) {
+          card.flipped = true
+        }
+        return card
+      })
+
+      setCards(newCards)
       setHasFlippedCard(true)
       setFirstCard({ id, framework })
 
@@ -50,6 +58,7 @@ const Game = function () {
     if (isMatch === true) {
       let newCards = cards.map(card => {
         if (card.id === firstCard.id || card.id === id) {
+          card.flipped = true
           card.disabled = true
         }
         return card
@@ -58,18 +67,26 @@ const Game = function () {
       setCards(newCards)
       setPontuacao(pontuacao + 10)
       resetBoard()
-      mensagem()
+      setTimeout(() => mensagem(), 500)
     } else {
       setPontuacao(pontuacao - 3)
-      unflipCards(id)
+      let newCards = cards.map(card => {
+        if (card.id === id) {
+          card.flipped = true
+        }
+        return card
+      })
+      setCards(newCards)
+      setLockBoard(true)
+      setTimeout(() => unflipCards(id), 2000)
     }
   }
 
   function unflipCards(id) {
     setLockBoard(true)
     let newCards = cards.map(card => {
-      if (card.id === firstCard.id || card.id === id) {
-        card.mustUnflip = true
+      if (!card.disabled && (card.id === firstCard.id || card.id === id)) {
+        card.flipped = false
       }
       return card
     })
@@ -147,6 +164,7 @@ const Game = function () {
                   framework={card.framework}
                   img={card.img}
                   disabled={card.disabled}
+                  flipped={card.flipped}
                   alt={card.alt}
                   id={card.id}
                   parentClickHandler={flipCard} />
