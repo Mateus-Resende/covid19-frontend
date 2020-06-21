@@ -71,7 +71,7 @@ Depois disso, rode os seguintes comandos:
     bundle exec rails server
   ```
 
-Já para o frontend, você precisará colocar uma chave de acesso ao google maps para conseguir rodar corretamente dentro de um arquivo .env na pasta frontend.  rode os comandos a seguir:
+Já para o frontend, você precisará colocar uma chave de acesso ao google maps para conseguir rodar corretamente dentro de um arquivo .env com o nome de `REACT_APP_GOOGLE_MAPS_API_KEY` na pasta frontend. Tendo feito isso, rode os comandos a seguir:
   ```
   cd frontend && \
     yarn install && \
