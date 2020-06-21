@@ -52,7 +52,15 @@ O projeto tem as seguintes dependências para rodar:
   - MySQL >= 5.6
   - Yarn >= 1.22
 
-Tendo essas três dependências instaladas, confirme que o seu MySQL está rodando na porta 3306, para rodar o backend será necessário rodar os seguintes comandos:
+Tendo essas três dependências instaladas, confirme que o seu MySQL está rodando na porta 3306.
+
+Para rodar o backend, é necessário que você coloque a sua senha do banco de dados dentro de um arquivo que não será commitado no repositório através do comando: `touch backend/config/local_env.yml`. Dentro do mesmo, adicione o seguinte conteúdo:
+
+```
+BACKEND_DATABASE_PASSWORD: <sua_senha_aqui>
+```
+
+Depois disso, rode os seguintes comandos:
   ```
   cd backend && \
     gem install bundler && \
