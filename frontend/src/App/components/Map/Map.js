@@ -13,6 +13,7 @@ const MyMapComponent = compose(
   withGoogleMap
 )((props) => {
   const [ownPosition, setOwnPosition] = useState(null)
+  const [center, setCenter] = useState({lat: -19.928519, lng: -43.93640})
 
   const printCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -22,6 +23,7 @@ const MyMapComponent = compose(
           lng: position.coords.longitude
         }
         setOwnPosition(pos)
+        setCenter(pos)
       })
     }
   }
@@ -33,7 +35,7 @@ const MyMapComponent = compose(
   return (
     <GoogleMap
       defaultZoom={14}
-      defaultCenter={{lat: -19.928519, lng: -43.93640}}
+      defaultCenter={center}
     >
       {props.occurrences ?
           props.occurrences.map((occurrence) => {
@@ -41,7 +43,7 @@ const MyMapComponent = compose(
           }) :
           null}
       {ownPosition && ownPosition.lat && ownPosition.lng
-          ? <Marker key="ownPosition" position={{lat: ownPosition.lat, lng: ownPosition.lng }} />
+          ? <Marker key="ownPosition" position={{lat: ownPosition.lat, lng: ownPosition.lng }} label="Sua localização"/>
           : null}
 
 

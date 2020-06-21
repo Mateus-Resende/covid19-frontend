@@ -38,7 +38,7 @@ class Information extends React.Component {
               <p>As pessoas podem pegar a COVID-19 de outras pessoas que têm o vírus. A doença pode ser transmitida, principalmente, de pessoa para pessoa por meio de gotículas do nariz ou da boca que se espalham quando uma pessoa com COVID-19 tosse, espirra ou fala. Essas gotículas são relativamente pesadas, não viajam longe e caem rapidamente no chão. As pessoas podem pegar a COVID-19 se respirarem essas gotículas de uma pessoa infectada pelo vírus. É por isso que é importante ficar pelo menos a 1 metro de distância dos outros.</p>
               <p>As gotículas também podem pousar em objetos e superfícies ao redor da pessoa – como mesas, maçanetas, celulares e corrimãos. As pessoas podem pegar COVID-19 quando tocam nesses objetos ou superfícies com as mãos ou outra parte do corpo e, em seguida, tocam os olhos, nariz ou boca. É por isso que é importante lavar as mãos regularmente com água e sabão ou limpá-las com álcool em gel.</p>
               <p>A OPAS e a OMS estão avaliando pesquisas em andamento sobre a maneira como o vírus causador da COVID-19 é disseminado e continuarão a compartilhar descobertas atualizadas.</p>
-              <p>O vírus que causa a COVID-19 pode ser transmitido pelo ar? Estudos até o momento sugerem que o vírus que causa a COVID-19 é transmitido principalmente pelo contato com gotículas respiratórias – e não pelo ar.</p>
+              <p>O vírus que causa a COVID-19 pode ser transmitido pelo ar?Estudos até o momento sugerem que o vírus que causa a COVID-19 é transmitido principalmente pelo contato com gotículas respiratórias – e não pelo ar.</p>
             </div>
           </div>
           <div className="Question Hidden" onClick={this.handleClick}>

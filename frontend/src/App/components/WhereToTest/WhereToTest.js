@@ -9,7 +9,7 @@ const WhereToTest = () => {
   const [errors, setError] = useState(null)
 
   const fetchPlaces = () => {
-    fetch(`http://localhost:3000/test-places`, {
+    fetch(`http://back/test-places`, {
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",

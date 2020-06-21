@@ -29,7 +29,7 @@ const Shop = function () {
   const [totalPages, setTotalPages] = useState(0)
 
   const fetchData = (event, page) => {
-    fetch(`http://localhost:3000/products?page=${page}&limit=${LIMIT}`, {
+    fetch(`http://back/products?page=${page}&limit=${LIMIT}`, {
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'same-origin',

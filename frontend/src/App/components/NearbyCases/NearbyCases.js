@@ -8,7 +8,7 @@ const NearbyCases = () => {
   const [error, setError] = useState(null)
 
   const fetchCases = () => {
-    fetch(`http://localhost:3000/cases`, {
+    fetch(`http://back/cases`, {
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'same-origin',
