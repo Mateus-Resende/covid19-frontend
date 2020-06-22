@@ -1,9 +1,9 @@
 # Trabalho Prático - Processamento Paralelo e Sistemas Distribuídos
 
 ## Autores
-Eduardo Magalhães Santa Bárbara
-Elionai Rocha da Silva
-Mateus Augusto Mendonça de Resende
+Eduardo Magalhães Santa Bárbara    - 115116549
+Elionai Rocha da Silva             - 11621642
+Mateus Augusto Mendonça de Resende - 120114657
 
 ## Descrição
 
