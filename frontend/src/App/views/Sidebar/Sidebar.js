@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sidebar.scss'
 
-import ListItem from '../../components/ListItem/ListItem'
+import ListItem from '../ListItem/ListItem'
 
 class Sidebar extends React.Component {
   state = {
@@ -9,20 +9,20 @@ class Sidebar extends React.Component {
   }
 
   list = [{
-    name: 'Suprimentos Médicos',
-    icon: 'ShoppingCart',
-    path: '/'
-  }, {
     name: 'Avaliação de Risco',
     icon: 'Risk',
     path: '/risk-preview'
+  }, {
+    name: 'Suprimentos Médicos',
+    icon: 'ShoppingCart',
+    path: '/'
   }, {
     name: 'Casos próximos',
     icon: 'NearbyCases',
     path: 'nearby-cases'
   }, {
     name: 'Perguntas frequentes',
-    icon: 'OnlineAppointment',
+    icon: 'FAQ',
     path: 'faq'
   }, {
     name: 'Onde fazer o teste',

@@ -11,7 +11,9 @@ import FormGroup from '@material-ui/core/FormGroup';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
   resetContainer: {
     width: '70%',
     padding: theme.spacing(3),
+    marginTop: '10px',
+    marginBottom: '10px'
   },
 }));
 
@@ -218,6 +222,9 @@ export default function RiskPreview() {
     perdaDePaladarOuOlfato: false,
     descoloracao: false,
   });
+  const [name, setName] = React.useState('')
+  const [address, setAddress] = React.useState('')
+  const [formSent, setFormSent] = React.useState('')
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -229,6 +236,7 @@ export default function RiskPreview() {
 
   const handleReset = () => {
     setActiveStep(0);
+    setFormSent(false)
   };
 
   const handleChange = (event) => {
@@ -236,8 +244,47 @@ export default function RiskPreview() {
     setState({ ...state, [event.target.name]: value });
   };
 
+  const handleNameChange = (event) => {
+    setName(event.target.value)
+  }
+
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value)
+  }
+
+  const handleOnSubmit = async (event) => {
+    event.preventDefault();
+    const res = await fetch('http://localhost:3000/people', {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ people: { name, address, infected: getRiskLevel() } })
+    })
+    if (res.status === 201) {
+      setFormSent(true)
+    }
+  }
+
+
   const getRiskLevel = () => {
-    return (Number(state.febre) + Number(state.tosseSeca) + Number(state.cansaco) + Number(state.dores) + Number(state.congestaoNasal) + Number(state.dorDeCabeça) + Number(state.conjuntivite) + Number(state.dorDeGarganta) + Number(state.diarreia) + Number(state.erupcaoCutaneaNaPele) + Number(state.perdaDePaladarOuOlfato) + Number(state.descoloracao)) * ((state.contact + 1) * 15) * ((state.outside * 4))
+    return (
+      Number(state.febre) +
+      Number(state.tosseSeca) +
+      Number(state.cansaco) +
+      Number(state.dores) +
+      Number(state.congestaoNasal) +
+      Number(state.dorDeCabeça) +
+      Number(state.conjuntivite) +
+      Number(state.dorDeGarganta) +
+      Number(state.diarreia) +
+      Number(state.erupcaoCutaneaNaPele) +
+      Number(state.perdaDePaladarOuOlfato) +
+      Number(state.descoloracao)) *
+      ((state.contact + 1) * 15) *
+      ((state.outside * 4))
   }
 
   return (
@@ -286,7 +333,39 @@ export default function RiskPreview() {
             </Button>
           </Paper>
         )}
-      </FormGroup>
+        </FormGroup>
+        <FormGroup>
+        {activeStep === steps.length &&
+          <Paper elevation={0} className={classes.resetContainer}>
+            <form noValidate autoComplete="off" onSubmit={handleOnSubmit}>
+            <FormGroup>
+              <FormControl fullWidth >
+                <TextField id="standard-basic" label="Nome" onKeyUp={handleNameChange} />
+              </FormControl>
+              <FormControl fullWidth >
+                <TextField id="standard-basic" label="Endereço" onKeyUp={handleAddressChange}/>
+              </FormControl>
+              </FormGroup>
+              <FormGroup>
+              <FormControl>
+                <Typography></Typography>
+                <Button variant="contained" color="primary" type="submit">
+                  Salvar
+                </Button>
+              </FormControl>
+              </FormGroup>
+            </form>
+          </Paper>
+          }
+        </FormGroup>
+        <FormGroup>
+        {activeStep === steps.length && formSent &&
+          <Paper elevation={0} className={classes.resetContainer}>
+            <Typography>Dados salvos com sucesso</Typography>
+          </Paper>
+          }
+        </FormGroup>
+
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import ShoppingCart from './add_shopping_cart-24px.svg';
-import OnlineAppointment from './consulta_online-24px.svg';
+import FAQ from './consulta_online-24px.svg';
 import Games from './game-24px.svg';
 import WhereToTest from './local_hospital-24px.svg';
 import NearbyCases from './place-24px.svg';
@@ -9,6 +9,7 @@ import BarChart from './bar_chart-24px.svg';
 import CurrentLocationMarker from './current-location-marker.png';
 import WhereToTestIcon from './pin.png';
 import Risk from './risk.png';
+import Doctor from './doctor.png';
 
 import Aglomeracao from './aglomeracao.png';
 import Brinquedos from './brinquedos.png';
@@ -22,11 +23,12 @@ import Virus from './virus.png';
 
 const Icons = {
   ShoppingCart,
-  OnlineAppointment,
+  FAQ,
   Games,
   NearbyCases,
   WhereToTest,
   News,
+  Doctor,
   Group,
   BarChart,
   CurrentLocationMarker,

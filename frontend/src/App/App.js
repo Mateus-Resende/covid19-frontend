@@ -19,7 +19,17 @@ import './App.scss';
 class App extends React.Component {
   state = {}
 
+  demoWatson () {
+    window.loadWatsonAssistantChat({
+      integrationID: process.env.REACT_APP_IBM_WATSON_INTEGRATION,
+      region: "us-south"
+    }).then((instance) => {
+      instance.render()
+    })
+  }
+
   render () {
+    this.demoWatson()
     return (
       <div className="App">
         <Router>
